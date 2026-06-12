@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>冯圣杰 | Personal Homepage</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --panel: rgba(255, 255, 255, 0.78);
+      --panel-solid: #ffffff;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(17, 17, 17, 0.08);
+      --accent: #0071e3;
+      --accent-soft: rgba(0, 113, 227, 0.12);
+      --shadow: 0 30px 80px rgba(17, 17, 17, 0.08);
+      --radius-xl: 36px;
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --content: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top center, rgba(0, 113, 227, 0.08), transparent 28%),
+        linear-gradient(180deg, #fbfbfd 0%, #f5f5f7 34%, #f1f1f3 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: saturate(180%) blur(24px);
+      background: rgba(251, 251, 253, 0.72);
+      border-bottom: 1px solid rgba(17, 17, 17, 0.05);
+    }
+
+    .nav-inner,
+    .container {
+      width: min(calc(100% - 32px), var(--content));
+      margin: 0 auto;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 56px;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .section {
+      padding: 28px 0;
+    }
+
+    .hero {
+      padding-top: 44px;
+    }
+
+    .hero-card {
+      min-height: 78vh;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,255,255,0.58)),
+        linear-gradient(140deg, #eef3ff 0%, #f6f6f8 48%, #ffffff 100%);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      padding: 72px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 9vw, 96px);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(22px, 3.4vw, 34px);
+      line-height: 1.15;
+      color: var(--muted);
+      max-width: 640px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      font-size: 18px;
+      line-height: 1.75;
+      color: #424245;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    .button,
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+    }
+
+    .button:hover,
+    .button-secondary:hover {
+      transform: translateY(-1px);
+    }
+
+    .button {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .button-secondary {
+      background: rgba(255,255,255,0.86);
+      color: var(--accent);
+      border: 1px solid rgba(0, 113, 227, 0.18);
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(0, 113, 227, 0.14), transparent 34%),
+        linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0));
+    }
+
+    .portrait-wrap {
+      position: relative;
+      width: min(100%, 460px);
+      aspect-ratio: 0.84;
+      border-radius: 32px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.12);
+    }
+
+    .portrait-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+    }
+
+    .floating-note {
+      position: absolute;
+      right: 42px;
+      bottom: 42px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(255,255,255,0.72);
+      backdrop-filter: blur(24px);
+      box-shadow: 0 20px 40px rgba(17, 17, 17, 0.08);
+      border-radius: 22px;
+      padding: 18px 20px;
+      max-width: 260px;
+    }
+
+    .floating-note strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .floating-note span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .headline-block {
+      text-align: center;
+      padding: 52px 0 8px;
+    }
+
+    .headline-block h2 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .headline-block p {
+      max-width: 760px;
+      margin: 16px auto 0;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.6;
+      letter-spacing: -0.01em;
+    }
+
+    .metrics-grid,
+    .cards-grid,
+    .timeline-grid {
+      display: grid;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .metrics-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .metric {
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(17,17,17,0.06);
+      border-radius: 28px;
+      padding: 30px 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .metric-value {
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      font-weight: 700;
+    }
+
+    .metric-label {
+      margin-top: 10px;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .cards-grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .card {
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(17,17,17,0.06);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .card ul {
+      margin: 18px 0 0;
+      padding-left: 18px;
+      color: #424245;
+      display: grid;
+      gap: 10px;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .span-7 { grid-column: span 7; }
+    .span-5 { grid-column: span 5; }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-8 { grid-column: span 8; }
+
+    .timeline-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .timeline-item {
+      display: grid;
+      gap: 12px;
+      padding: 28px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.84);
+      border: 1px solid rgba(17,17,17,0.06);
+      box-shadow: var(--shadow);
+    }
+
+    .timeline-kicker {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .timeline-item h3 {
+      font-size: 30px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .footer {
+      padding: 64px 0 90px;
+    }
+
+    .footer-card {
+      border-radius: 36px;
+      background:
+        linear-gradient(135deg, #101114 0%, #17191d 100%);
+      color: #f5f5f7;
+      padding: 48px;
+      display: grid;
+      gap: 20px;
+      box-shadow: 0 30px 80px rgba(17,17,17,0.18);
+    }
+
+    .footer-card h2 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .footer-card p {
+      max-width: 760px;
+      font-size: 19px;
+      line-height: 1.75;
+      color: rgba(245,245,247,0.8);
+    }
+
+    .footer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .footer-meta a,
+    .footer-meta span {
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #f5f5f7;
+      font-size: 14px;
+    }
+
+    .small-note {
+      color: rgba(245,245,247,0.52);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1060px) {
+      .hero-card,
+      .timeline-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .span-7,
+      .span-5,
+      .span-4,
+      .span-6,
+      .span-8 {
+        grid-column: span 12;
+      }
+
+      .hero-copy {
+        padding: 56px 28px 24px;
+      }
+
+      .hero-visual {
+        padding: 20px 20px 34px;
+      }
+
+      .floating-note {
+        position: static;
+        margin-top: 14px;
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-card {
+        min-height: auto;
+      }
+
+      .hero-copy,
+      .card,
+      .timeline-item,
+      .footer-card {
+        padding: 24px;
+      }
+
+      .headline-block p {
+        font-size: 17px;
+      }
+
+      .hero-text,
+      .footer-card p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">Feng Shengjie</a>
+      <div class="nav-links">
+        <a href="#profile">Profile</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="section hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <div class="eyebrow">Personal Homepage</div>
+            <h1 class="hero-title">冯圣杰</h1>
+            <p class="hero-subtitle">通信工程背景，兼具技术理解、沟通组织与零售前线经验。</p>
+            <p class="hero-text">
+              北京化工大学通信工程本科毕业，具备工程训练、项目协作与品牌零售实习经历。
+              我擅长把复杂任务拆解成可执行路径，也乐于把沟通、执行与审美一起做到位。
+            </p>
+            <div class="hero-actions">
+              <a class="button" href="#contact">联系我</a>
+              <a class="button-secondary" href="./resume-retail.pdf">查看简历</a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div>
+              <div class="portrait-wrap">
+                <img src="./portrait.jpg" alt="冯圣杰证件照" />
+              </div>
+              <div class="floating-note">
+                <strong>Current Focus</strong>
+                <span>面向品牌、零售、运营与需要沟通执行力的岗位，寻找一个能长期放大成长曲线的位置。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="profile">
+      <div class="container">
+        <div class="headline-block">
+          <h2>把技术训练、组织能力与客户感知放进同一个人里。</h2>
+          <p>
+            我的履历横跨通信工程、校园组织、科研训练与奢侈品零售实习。
+            这让我既能理解逻辑与系统，也能在真实场景里处理人、节奏与结果。
+          </p>
+        </div>
+
+        <div class="metrics-grid">
+          <article class="metric">
+            <div class="metric-value">2024</div>
+            <div class="metric-label">本科毕业于北京化工大学，通信工程专业，工学学士。</div>
+          </article>
+          <article class="metric">
+            <div class="metric-value">CET-6</div>
+            <div class="metric-label">具备良好英语能力，曾在零售实习中多次使用英文接待国外顾客。</div>
+          </article>
+          <article class="metric">
+            <div class="metric-value">5%+</div>
+            <div class="metric-label">LVMH 集团旗下 Celine 北京 SKP 实习期间，协助店面销售业绩增长。</div>
+          </article>
+          <article class="metric">
+            <div class="metric-value">100+</div>
+            <div class="metric-label">曾在地产评估实习中按时推进近 100 户项目报告交付。</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="cards-grid">
+          <article class="card span-7">
+            <h3>教育与基础能力</h3>
+            <p>
+              北京化工大学本科，通信工程专业。主修信号与系统、通信原理、通信电子电路、模拟电子电路、数字电子电路。
+              系统训练让我具备较强的逻辑分析能力，也让我习惯在复杂问题里找结构。
+            </p>
+            <ul>
+              <li>学校：北京化工大学（211、双一流）</li>
+              <li>学位：工学学士</li>
+              <li>时间：2020.09 - 2024.06</li>
+              <li>英语：大学英语六级 CET-6</li>
+            </ul>
+          </article>
+
+          <article class="card span-5">
+            <h3>个人优势</h3>
+            <p>简历里最稳定出现的关键词是：沟通、稳定、执行、协同。</p>
+            <div class="tag-list">
+              <span class="tag">沟通能力</span>
+              <span class="tag">英语表达</span>
+              <span class="tag">情绪稳定</span>
+              <span class="tag">组织协调</span>
+              <span class="tag">领导力</span>
+              <span class="tag">审美表达</span>
+            </div>
+          </article>
+
+          <article class="card span-6">
+            <h3>LVMH 集团零售实习</h3>
+            <p>
+              曾担任 LVMH 旗下奢侈品牌 Celine 北京 SKP 的零售实习生，
+              在高标准门店环境中学习客户服务、品牌表达与销售协作，
+              并多次使用英文接待国外顾客。
+            </p>
+            <ul>
+              <li>熟悉高端零售场景中的服务细节与顾客体验</li>
+              <li>能够在真实销售环境中进行英文接待与沟通</li>
+              <li>协助店面销售业绩增长 5% 以上</li>
+            </ul>
+          </article>
+
+          <article class="card span-6">
+            <h3>房地产评估公司实习</h3>
+            <p>
+              在陕西大禾房地产评估公司实习期间，参与多次项目调研与报告交付，
+              既要面对专业文档，也要处理多方协商与落地节奏。
+            </p>
+            <ul>
+              <li>多次参与出差调研，承担项目 50% 以上工作量</li>
+              <li>完成多个房地产评估项目</li>
+              <li>推动棚改户、评估公司、政府三方达成共识</li>
+              <li>按时交付近 100 户房产项目报告</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="headline-block">
+          <h2>不是只会学习理论，也能把项目推进到结果。</h2>
+          <p>
+            从 5G 仿真实训到 Matlab 建模，再到大学生创新创业项目与校园组织工作，
+            我更习惯在真实任务里把事情做完，而不只是把它学会。
+          </p>
+        </div>
+
+        <div class="timeline-grid">
+          <article class="timeline-item">
+            <div class="timeline-kicker">Project / 2022.09 - 2022.11</div>
+            <h3>5G 仿真实训</h3>
+            <p>
+              以真实网络流程为依据，利用通信网络部署与优化仿真教学系统，
+              学习 5G 网络规划、配置与优化，建立对通信系统工程链路的整体理解。
+            </p>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-kicker">Project / 2022.07 - 2022.08</div>
+            <h3>EDA 电路设计与 PCB 绘制</h3>
+            <p>
+              完成原理图绘制、印刷电路设计、仿真与报表生成，
+              对硬件设计流程和工程规范形成更完整的基础认知。
+            </p>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-kicker">Project / 2022.09 - 2023.01</div>
+            <h3>Matlab 仿真训练</h3>
+            <p>
+              学习 MATLAB 与 Simulink 的控制建模、线性系统分析、PID 设计与仿真方法，
+              强化了我把抽象理论转成可验证模型的能力。
+            </p>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-kicker">Innovation / 2021 - 2022</div>
+            <h3>大学生创新创业项目</h3>
+            <p>
+              研究课题为“节能型化工过程的控制”，我在组内承担项目总结、成果汇报与 PPT 制作等关键职责，
+              最终项目成功结题并被评为校级 A 类。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="cards-grid">
+          <article class="card span-8">
+            <h3>校园组织与领导力</h3>
+            <p>
+              我不仅在专业项目里参与协作，也长期承担班级与校园组织中的责任角色。
+              这些经历让我在推进任务、沟通协同和面对突发情况时更稳。
+            </p>
+            <ul>
+              <li>长期担任班长，带领班级获得“十佳班级体”称号</li>
+              <li>独立组织多场大型活动，疫情期间协助完成大量学生工作</li>
+              <li>蝉联“最受欢迎班委”头衔</li>
+              <li>以面试第一名进入北京化工大学团委宣传部</li>
+              <li>长期参与新媒体内容、海报、视频、推送和文案制作</li>
+            </ul>
+          </article>
+
+          <article class="card span-4">
+            <h3>Tools</h3>
+            <div class="tag-list">
+              <span class="tag">Matlab</span>
+              <span class="tag">C 语言</span>
+              <span class="tag">Photoshop</span>
+              <span class="tag">Premiere Pro</span>
+              <span class="tag">Microsoft Office</span>
+              <span class="tag">驾驶证</span>
+            </div>
+          </article>
+
+          <article class="card span-4">
+            <h3>Awards</h3>
+            <ul>
+              <li>北京化工大学院级优秀学生干部（2023）</li>
+              <li>北京化工大学优秀团员（2022）</li>
+              <li>北京市大学生人文知识竞赛优秀奖（2021）</li>
+            </ul>
+          </article>
+
+          <article class="card span-8">
+            <h3>What I bring</h3>
+            <p>
+              如果把我放进一个团队，我能贡献的不止是某一个孤立技能，而是一种综合工作方式：
+              快速理解任务，稳定沟通，主动协同，并把输出做得清晰、可靠、可交付。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section footer" id="contact">
+      <div class="container">
+        <div class="footer-card">
+          <h2>Let’s build something worth remembering.</h2>
+          <p>
+            我对品牌、零售、运营、内容表达，以及需要执行力与沟通能力的岗位都保持开放。
+            如果你正在寻找一个有工程训练、组织经验，也能在真实业务场景中快速进入状态的人，欢迎联系我。
+          </p>
+          <div class="footer-meta">
+            <a href="mailto:leofung252@163.com">leofung252@163.com</a>
+            <span>+86 131 0918 1770</span>
+            <a href="./resume-retail.pdf">下载 PDF 简历</a>
+            <a href="./resume.docx">下载 DOCX 简历</a>
+          </div>
+          <div class="small-note">
+            页面内容依据你提供的简历信息整理生成。视觉风格参考高端科技品牌官网的留白、排版和节奏感，但页面内容与结构为你定制。
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
